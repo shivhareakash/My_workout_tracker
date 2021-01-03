@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #My apps
+    # App_name.apps.'name as mentioned in apps.py'
+    'app_workout_tracker.apps.AppWorkoutTrackerConfig'
 ]
 
 MIDDLEWARE = [
@@ -75,10 +79,24 @@ WSGI_APPLICATION = 'My_workout_tracker.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'workout_tracker_db',
+        'USER': 'postgres',
+        'PASSWORD':'TEerth@123',
+        'HOST':'localhost'
     }
 }
+
+## DB for GIT HUB
+if os.environ.get('GITHUB_WORKFLOW'):
+    DATABASES={
+        'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation

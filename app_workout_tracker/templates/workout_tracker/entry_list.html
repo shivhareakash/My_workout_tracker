@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+     {% for model in called_submodel %}
+
+        <ul>
+            <li><a href="{% url 'awt:public_subtopic_detail' subtopic_id=model.id subtopic_name=subtopic_name %}"> {{subtopic_name}}{{model.topic}},{{model}},{{model.id}},{{model.date_added}}</a></li>
+        </ul>
+
+    {% endfor %}
+
+{% endblock %}
