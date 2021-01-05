@@ -15,6 +15,8 @@ class Topic(models.Model):
     def __str__(self):
         '''returning a string representation of this class'''
         return self.topic_name
+    class Meta:
+        ordering = ['-date_added']
 
 class Goal(models.Model):
     '''This class will store the Goals linked to the Topic'''
@@ -26,6 +28,9 @@ class Goal(models.Model):
     def __str__(self):
         '''returning a string representation of this goal_text for this class'''
         return self.summary[:30]
+
+    class Meta:
+        ordering = ['-date_added']
 
 class Progress(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
@@ -40,6 +45,7 @@ class Progress(models.Model):
     class Meta:
         '''This will avoid plurization of this Progress class'''
         verbose_name_plural = "Progress"
+        ordering=['-date_added']
 
 class Mistake(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
@@ -50,3 +56,6 @@ class Mistake(models.Model):
     def __str__(self):
         '''returning a string representation of this goal_text for this class'''
         return self.summary[:30]
+
+    class Meta:
+        ordering = ['-date_added']

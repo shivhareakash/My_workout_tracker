@@ -9,7 +9,7 @@ class TopicForm(forms.ModelForm):
         model = Topic
         fields = ['topic_name', 'view_option']
         # Leaving the labels empty
-        labels = {'topic_name': '', 'view_option': ''}
+        labels = {'topic_name': 'Add new Topic', 'view_option': 'Make Public'}
 
 class ProgressForm(forms.ModelForm):
     '''Creating django form for Progress Model'''

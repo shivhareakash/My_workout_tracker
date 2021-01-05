@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+<div> {{user|title}}'s Topics:</div>
+     <h1> {% for topic in user_topics %}
+         <ul>
+             <li>
+
+                 {{topic}}
+                 <a href="{% url 'awt:secure_subtopic_list' topic_id=topic.id subtopic_name='goals_list' %}">Goals</a>
+                 <a href="{% url 'awt:secure_subtopic_list' topic_id=topic.id subtopic_name='progress_list' %}">Progress</a>
+                 <a href="{% url 'awt:secure_subtopic_list' topic_id=topic.id subtopic_name='mistakes_list' %}">Mistake</a>
+                 <a href="{% url 'awt:delete_topic' topic.id %}"><button type="delete">Delete Topic</button></a>
+
+             </li>
+         </ul>
+        {% endfor %}
+    </h1>
+
+
+{% else %}
+<h1>RESTRICTED ACCESS: YOU ARE NOT AUTHORISED TO VIEW THIS, PLEASE LOGIN!!</h1>
+
+{% endif %}
+
+{% endblock %}

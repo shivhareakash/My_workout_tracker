@@ -11,9 +11,19 @@
 </head>
 <body>
 
-<nav class="navbar navbar-dark bg-primary"  >
+<nav class="navbar "  >
     <div class="container-fluid">
-        <h1 class="navbar-brand float-start"><b>{{My}} Workout tracker</b></h1>
+        <h1 class="navbar-brand float-start"><b><a href="/">
+            {{My}} Workout tracker</a></b> |||||||| <a href="{{request.META.HTTP_REFERER|escape}}">Back</a>||||
+
+            {% if user.is_authenticated %}
+            <a href="{% url 'awt:secure_topics_list' %}">My Topics</a>||<a href="{% url 'awt:add_topic' %}">Add Topics</a>
+             <h3>Welcome {{user|title}},</h3><div> You last logged in at {{user.last_login}}</div>
+
+            {% else %}
+             <h3>Welcome Guest</h3>
+            {% endif %}
+</h1>
     </div>
 </nav>
 <div class="container">

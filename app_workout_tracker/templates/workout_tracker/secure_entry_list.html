@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+
+<a><button>Add new entry</button></a>
+  {% for key, submodel in called_submodel.items %}
+
+        {% for value in submodel %}
+          <ul>
+    <li>
+        <a href="{% url 'awt:secure_subtopic_detail' pk=value.id subtopic_name=key %}">  {{value.topic}}||{{value.text}} || {{value}}||{{value.id}}</a>
+           </li>
+</ul>
+        {%endfor%}
+{%endfor%}
+
+
+
+
+{% else %}
+<h1>RESTRICTED ACCESS: YOU ARE NOT AUTHORISED TO VIEW THIS, PLEASE LOGIN!!</h1>
+
+{% endif %}
+
+{% endblock %}
