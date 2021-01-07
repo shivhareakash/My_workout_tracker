@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div>{{detail.topic}}> Topic:id{{topic_id}} > {{subtopic_name}} > subtopic:id {{detail.id}}> </div>
+
 <div> {{detail.topic}} </div>
 <div>{{detail.summary}} </div>
 <div>{{detail.text}} </div>
 <div>{{detail.date_added}} </div>
 <div>{{detail.topic.owner}}</div>
-
+<div><a href="{% url 'awt:edit_subtopic' subtopic_id=detail.id subtopic_name=subtopic_name %}"><button>Edit text</button></div>
 
 
 {% endblock %}

@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
+<h2>Add Subtopic for {{topic}}:</h2>
+{{subtopic}}
+<form action="{% url 'awt:add_subtopic' topic_id=topic.id subtopic=subtopic %}" method="POST">
 
-<form action="{% url 'awt:add_subtopic' %}" method="POST">
 
     {% csrf_token %}
+
     <h4>Summary:{{subtopic_form.summary}} <br>
         Details:{{subtopic_form.text}}</h4>
     <button type="submit">SUBMIT</button>
 
 
 </form>
+
+
 {% endblock %}

@@ -2,10 +2,10 @@
 {% block content %}
 
 <div> Public Topics:</div>
-    <h1> {% for topic in public_topics %}
+     {% for topic in public_topics %}
          <ul>
              <li>
-                 {{topic}}
+                 <b>{{topic|title}} :</b>
                  <a href="{% url 'awt:public_subtopic_list' topic_id=topic.id subtopic_name='goals_list' %}">Goals</a>
                  <a href="{% url 'awt:public_subtopic_list' topic_id=topic.id subtopic_name='progress_list' %}">Progress</a>
                  <a href="{% url 'awt:public_subtopic_list' topic_id=topic.id subtopic_name='mistakes_list' %}">Mistake</a>
@@ -13,7 +13,6 @@
              </li>
          </ul>
         {% endfor %}
-    </h1>
 
 
 {% endblock %}

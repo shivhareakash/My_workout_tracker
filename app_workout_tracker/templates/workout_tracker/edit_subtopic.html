@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+
+<form action="{% url 'awt:edit_subtopic' subtopic_id=subtopic_id subtopic_name=subtopic_name %}" method="POST">
+
+    {% csrf_token %}
+
+    <h4>Summary:{{subtopic_form.summary}} <br>
+        Details:{{subtopic_form.text}}</h4>
+    <button type="submit">SUBMIT</button>
+</form>
+{% endblock %}
