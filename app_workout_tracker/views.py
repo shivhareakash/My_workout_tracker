@@ -140,7 +140,8 @@ def add_topic(request):
 def delete_topic(request, topic_id):
     '''Deleting topic entry'''
     topic = Topic.objects.get(id=topic_id)
-    topic.delete()
+    if topic.owner == request.user:
+        topic.delete()
     return redirect('awt:secure_topics_list')
 
 

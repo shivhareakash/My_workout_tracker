@@ -25,7 +25,7 @@ SECRET_KEY = '9^3v__0vkombqy0ujb#(xbz)e1q1j@sv)i5igf4&oe6@5hlowq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,7 +40,8 @@ INSTALLED_APPS = [
 
     #My apps
     # App_name.apps.'name as mentioned in apps.py'
-    'app_workout_tracker.apps.AppWorkoutTrackerConfig'
+    'app_workout_tracker.apps.AppWorkoutTrackerConfig',
+    'users'
 ]
 
 MIDDLEWARE = [

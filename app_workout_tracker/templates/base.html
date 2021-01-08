@@ -18,10 +18,10 @@
 
             {% if user.is_authenticated %}
             <a href="{% url 'awt:secure_topics_list' %}">My Topics</a>||<a href="{% url 'awt:add_topic' %}">Add Topics</a>
-             <h3>Welcome {{user|title}},</h3><div> You last logged in at {{user.last_login}}</div>
+            <h3>Welcome {{user.username|title}},</h3><div> You last logged in at {{user.last_login}}</div><div><h4><a href="{% url 'users:logout' %}">Logout</a></h4></div>
 
             {% else %}
-             <h3>Welcome Guest</h3>
+            <h4>Welcome Guest!- <a href="{% url 'users:register' %}">Register</a>||<a href="{% url 'users:login' %}">Login</a></h4>
             {% endif %}
 </h1>
     </div>
