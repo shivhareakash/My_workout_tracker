@@ -168,7 +168,7 @@ if cwd == '/app' or cwd[:4] == '/tmp':
 
     # Only allow heroku to host the project.
     ALLOWED_HOSTS = ['*']
-    DEBUG = False
+    DEBUG = True
 
 
 #Login Settings when guest tries to view secure section
