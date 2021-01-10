@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '9^3v__0vkombqy0ujb#(xbz)e1q1j@sv)i5igf4&oe6@5hlowq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.0.102','localhost','127.0.0.1']
 
@@ -142,9 +142,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static_files')
+    os.path.join(BASE_DIR, 'static_files_local')
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets_local')
+
 #Bootstrap5 settings:
 BOOTSTRAP5= {
     'include_jquery': True,
@@ -167,8 +168,14 @@ if cwd == '/app' or cwd[:4] == '/tmp':
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
     # Only allow heroku to host the project.
-    ALLOWED_HOSTS = ['*']
-    DEBUG = True
+    ALLOWED_HOSTS = ['gary-workout-tracker.herokuapp.com']
+    DEBUG = False
+#Static assets config
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
+STATICFILES_DIRS = (
+os.path.join(BASE_DIR, 'static'),
+)
 
 
 #Login Settings when guest tries to view secure section
