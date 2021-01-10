@@ -173,10 +173,13 @@ if cwd == '/app' or cwd[:4] == '/tmp':
     #Static assets config
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-    MIDDLEWARE = ['whitenoise.middleware.WhiteNoiseMiddleware',]
-
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+    # MIDDLEWARE = [
+    #     'django.middleware.security.SecurityMiddleware',
+    #     'whitenoise.middleware.WhiteNoiseMiddleware',
+    #     # ...
+    # ]
+    #
+    # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATIC_TMP = os.path.join(BASE_DIR, 'static')
     STATIC_URL = '/static/'
