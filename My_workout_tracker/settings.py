@@ -171,10 +171,21 @@ if cwd == '/app' or cwd[:4] == '/tmp':
     ALLOWED_HOSTS = ['gary-workout-tracker.herokuapp.com']
     DEBUG = False
     #Static assets config
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    STATIC_ROOT = 'staticfiles'
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+    MIDDLEWARE = ['whitenoise.middleware.WhiteNoiseMiddleware',]
+
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATIC_TMP = os.path.join(BASE_DIR, 'static')
+    STATIC_URL = '/static/'
+
+    os.makedirs(STATIC_TMP, exist_ok=True)
+    os.makedirs(STATIC_ROOT, exist_ok=True)
+
     STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+        os.path.join(BASE_DIR, 'static'),
     )
 
 
