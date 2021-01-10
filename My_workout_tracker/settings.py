@@ -142,9 +142,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static_files_local')
+    os.path.join(BASE_DIR, 'static')
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'assets_local')
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 #Bootstrap5 settings:
 BOOTSTRAP5= {
