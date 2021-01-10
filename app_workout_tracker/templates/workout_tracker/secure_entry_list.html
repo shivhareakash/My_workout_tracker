@@ -36,15 +36,12 @@
             <a href="{% url 'awt:delete_subtopic' subtopic_id=value.id subtopic_name=called_submodel.0 %}"><button class="btn btn-danger btn-sm"> Delete entry</button></a>
             </div>
         </li>
-
-        <li class="list-group-item list-group-item-light">
-            {% empty %}
-            There are no entries.
-            </li>
-
-
-
     </ul>
+
+            {% empty %}
+        <li class="list-group-item list-group-item-light">
+            There are no entries.
+            </li>    </ul>
 
   {%endfor%}
     </div>
