@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load bootstrap5 %}
 
-<form action="{% url 'awt:add_topic' %}" method="POST">
+
+<form action="{% url 'awt:add_topic' %}" method="POST" class="form">
 
     {% csrf_token %}
-    <h4>Add New Topic:{{form.topic_name}} <br>
-        Make Public:{{form.view_option}}</h4>
-    <button type="submit">SUBMIT</button>
 
+<!--    <h4>Add New Topic:{{form.topic_name}} <br></h4>-->
+    <h5 class="card-header mb-3"> <b>Add New Topic:</b> </h5>
 
+    {%bootstrap_form form%}
+
+<!--    Make Public:{{form.view_option}}-->
+    <button type="submit" class="btn btn-success">SUBMIT</button>
 </form>
+
 {% endblock %}

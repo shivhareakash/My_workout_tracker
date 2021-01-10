@@ -52,7 +52,7 @@ def public_subtopic_detail(request, subtopic_id, subtopic_name):
     elif churned_subtopic_name== 'progress':
        detail = get_object_or_404(public_progress_list, id=subtopic_id)
 
-    context = {'detail':detail}
+    context = {'detail':detail, 'subtopic_name':subtopic_name}
     return render(request, 'workout_tracker/entry_detail.html', context)
 
 #

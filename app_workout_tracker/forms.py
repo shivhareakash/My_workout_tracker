@@ -9,7 +9,7 @@ class TopicForm(forms.ModelForm):
         model = Topic
         fields = ['topic_name', 'view_option']
         # Leaving the labels empty
-        labels = {'topic_name': 'Add new Topic', 'view_option': 'Make Public'}
+        labels = {'topic_name': '', 'view_option': 'Make Public:'}
 
 class ProgressForm(forms.ModelForm):
     '''Creating django form for Progress Model'''
@@ -17,7 +17,7 @@ class ProgressForm(forms.ModelForm):
     class Meta:
         model = Progress
         fields= ['summary', 'text']
-        labels = {'summary':'','text':''}
+        labels = {'summary':'Summary:','text':'Details:'}
         widgets = {'text': forms.Textarea(attrs={'cols':80})}
 
 class GoalForm(forms.ModelForm):
@@ -26,7 +26,7 @@ class GoalForm(forms.ModelForm):
     class Meta:
         model = Goal
         fields = ['summary', 'text']
-        labels = {'summary':'','text':''}
+        labels = {'summary':'Summary:','text':'Details:'}
         widgets = {'text':forms.Textarea(attrs={'cols':80})}
 
 class MistakeForm(forms.ModelForm):
@@ -35,6 +35,6 @@ class MistakeForm(forms.ModelForm):
     class Meta:
         model = Mistake
         fields = ['summary', 'text']
-        labels = {'summary':'','text':''}
+        labels = {'summary':'Summary:','text':'Details:'}
         widgets = {'text':forms.Textarea(attrs={'cols':80})}
 

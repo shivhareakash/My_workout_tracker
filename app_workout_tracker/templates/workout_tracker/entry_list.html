@@ -1,13 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<!--Navigation url-->
+<div class="progress" style="height: 20px;">
+    <a href="{% url 'awt:public_topics_list' %}"><b>Public Topic List</b></a> &nbsp;>&nbsp; {{called_submodel.0.topic|title}}'s {{subtopic_name|title}}</div>
 
+
+
+<div class=" mt-3 card-header">
+    <b>{{called_submodel.0.topic|title}}'s {{subtopic_name|title}}</b>
+
+</div>
+
+<div class="mt-3 card-body">
      {% for model in called_submodel %}
 
-        <ul>
-            <li><a href="{% url 'awt:public_subtopic_detail' subtopic_id=model.id subtopic_name=subtopic_name %}"> {{subtopic_name}}||{{model.topic}}||{{model}}||{{model.id}}||{{model.date_added}}</a></li>
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-light">
+
+                <div class="float-start">
+<!-- icon-->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-dots" viewBox="0 0 16 16">
+  <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z"/>
+  <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+</svg>
+<!--icon ends-->
+                    <a href="{% url 'awt:public_subtopic_detail' subtopic_id=model.id subtopic_name=subtopic_name %}"> {{model}}</a></div>
+                <div class="float-end"> <small>date added: {{model.date_added}}</small></div>
+            </li>
         </ul>
 
     {% endfor %}
-
+</div>
 {% endblock %}

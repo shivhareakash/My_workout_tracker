@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
+{% load bootstrap5 %}
 {% block content %}
-
+<h3 class="card-header mb-5"> New User Registeration </h3>
 <form action="{% url 'users:register' %}" method="POST">
     {% csrf_token %}
+    {% bootstrap_form form %}
+<!--    {{form.as_p}}-->
+    {% buttons %}
+    <button name="submit" class="btn btn-primary">Register</button>
+    {% endbuttons %}
 
-    {{form.as_p}}
-    <button name="submit">Register</button>
     <input type="hidden" name="next" value="{% url 'awt:secure_topics_list' %}"/>
 </form>
 {% endblock %}

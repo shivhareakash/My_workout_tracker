@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<form action="{% url 'awt:edit_subtopic' subtopic_id=subtopic_id subtopic_name=subtopic_name %}" method="POST">
+{% load bootstrap5 %}
+<form class="form" action="{% url 'awt:edit_subtopic' subtopic_id=subtopic_id subtopic_name=subtopic_name %}" method="POST">
 
     {% csrf_token %}
-
-    <h4>Summary:{{subtopic_form.summary}} <br>
-        Details:{{subtopic_form.text}}</h4>
-    <button type="submit">SUBMIT</button>
+    {% bootstrap_form subtopic_form %}
+<!--    <h4>Summary:{{subtopic_form.summary}} <br>-->
+<!--        Details:{{subtopic_form.text}}</h4>-->
+    <button type="submit" class="btn btn-success">SUBMIT</button>
 </form>
 {% endblock %}

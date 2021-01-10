@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h2>Add Subtopic for {{topic}}:</h2>
-{{subtopic}}
-<form action="{% url 'awt:add_subtopic' topic_id=topic.id subtopic=subtopic %}" method="POST">
+{% load bootstrap5 %}
+<h5 class="card-header mb-3" ><b> Add {{subtopic}} for {{topic}}:</b></h5>
+
+<form action="{% url 'awt:add_subtopic' topic_id=topic.id subtopic=subtopic %}" method="POST" class="form">
 
 
     {% csrf_token %}
-
-    <h4>Summary:{{subtopic_form.summary}} <br>
-        Details:{{subtopic_form.text}}</h4>
-    <button type="submit">SUBMIT</button>
+    {%bootstrap_form subtopic_form%}
+<!--    <h4>Summary:{{subtopic_form.summary}} <br>-->
+<!--        Details:{{subtopic_form.text}}</h4>-->
+    <button type="submit" class="btn btn-success">SUBMIT</button>
 
 
 </form>

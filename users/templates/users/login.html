@@ -1,14 +1,24 @@
 {% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block header %}
+<h3 class="card-header mb-5">Login to your account</h3>
+{% endblock header %}
+
 
 {% block content %}
-    {% if form.error %}
-    <p>Your username and password didn't match. Please try again.</p>
-    {% endif %}
+<!--    {% if form.error %}-->
+<!--    <p>Your username and password didn't match. Please try again.</p>-->
+<!--    {% endif %}-->
 
-    <form action="{% url 'users:login' %}" method="POST">
+    <form action="{% url 'users:login' %}" method="POST" class="form">
+        {% bootstrap_form form %}
         {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit" name="Login">Log In</button>
+<!--        {{form.as_p}}-->
+        {% buttons %}
+        <button type="submit" name="Login" class="btn btn-primary" >Log In</button>
+        {% endbuttons %}
+
         <input type="hidden" name="next" value="{% url 'awt:secure_topics_list' %}"/>
     </form>
 

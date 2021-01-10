@@ -1,14 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div>{{detail.topic}}> Topic:id{{topic_id}} > {{subtopic_name}} > subtopic:id {{detail.id}}> </div>
+<!--Navigation url-->
+<!--<div>{{detail.topic}}> Topic:id{{topic_id}} > {{subtopic_name}} > subtopic:id {{detail.id}}> </div>-->
 
-<div> {{detail.topic}} </div>
-<div>{{detail.summary}} </div>
-<div>{{detail.text}} </div>
-<div>{{detail.date_added}} </div>
-<div>{{detail.topic.owner}}</div>
-<div><a href="{% url 'awt:edit_subtopic' subtopic_id=detail.id subtopic_name=subtopic_name %}"><button>Edit text</button></div>
 
+<div class="progress" style="height: 20px;">
+    <a href="{% url 'awt:secure_topics_list' %}"><b>{{user.username|title}}'s Topic List</b></a> &nbsp;>&nbsp;
+    <a href="{% url 'awt:secure_subtopic_list' topic_id=topic_id subtopic_name=subtopic_name topic_name=detail.topic %}"> <b>{{detail.topic|title}}'s {{subtopic_name|title}}</b></a> &nbsp;>&nbsp; {{detail.summary}}</div>
+
+
+
+
+<div class="card text-dark bg-light mb-3 mt-3" >
+    <div class="card-header progress-bar progress-bar bg-success float-start text-start" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><h3>{{detail.topic}}</h3></div>
+  <div class="card-body">
+    <h5 class="card-title">{{detail.summary}}</h5>
+    <p class="card-text">{{detail.text}} </p>
+  </div>
+</div>
+<div class="mt-5"> <b>Date posted: </b> &nbsp;{{detail.date_added}} </div>
+<div ><b>Posted by: </b> &nbsp;{{detail.topic.owner|title}}</div>
+
+
+<div><a href="{% url 'awt:edit_subtopic' subtopic_id=detail.id subtopic_name=subtopic_name %}"><button class="btn btn-success">Edit text</button></a></div>
 
 {% endblock %}
