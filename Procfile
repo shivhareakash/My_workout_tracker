@@ -1,0 +1,1 @@
+web: gunicorn My_workout_tracker.wsgi --log-file -

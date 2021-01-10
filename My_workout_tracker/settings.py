@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -140,11 +141,35 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-
-
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 #Bootstrap5 settings:
 BOOTSTRAP5= {
     'include_jquery': True,
 }
+
+
+
+# Heroku settings
+
+django_heroku.settings(locals())
+cwd = os.getcwd()
+if cwd == '/app' or cwd[:4] == '/tmp':
+    import dj_database_url
+
+    DATABASES = {
+        'default': dj_database_url.config(default='postgres://localhost')
+    }
+
+    # Honor the 'X-Forwarded-Proto' header for request.is_secure().
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+    # Only allow heroku to host the project.
+    ALLOWED_HOSTS = ['*']
+    DEBUG = False
+
+
+#Login Settings when guest tries to view secure section
+LOGIN_URL = '/users/login/'
