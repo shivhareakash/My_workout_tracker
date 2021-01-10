@@ -28,6 +28,20 @@
                     <a href="{% url 'awt:public_subtopic_detail' subtopic_id=model.id subtopic_name=subtopic_name %}"> {{model}}</a></div>
                 <div class="float-end"> <small>date added: {{model.date_added}}</small></div>
             </li>
+
+
+            <li class="list-group-item list-group-item-light">
+            {% empty %}
+                {% if user.is_authenticated%}
+                <div class="card-header">There are no entries. To add entries go to your own topics:</div></br>
+                    <a href="{% url 'awt:secure_topics_list' %}"> <button class="btn btn-success">My Topics</button></a>
+
+                {% else %}
+                <div class="card-header">There are no entries. Login to add entries.</div></br>
+                <a href="{% url 'users:login' %}"> <button class="btn btn-danger">Login</button></a>
+            </li>
+                {% endif %}
+
         </ul>
 
     {% endfor %}
