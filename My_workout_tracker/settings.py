@@ -170,12 +170,12 @@ if cwd == '/app' or cwd[:4] == '/tmp':
     # Only allow heroku to host the project.
     ALLOWED_HOSTS = ['gary-workout-tracker.herokuapp.com']
     DEBUG = False
-#Static assets config
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = 'staticfiles'
-STATICFILES_DIRS = (
-os.path.join(BASE_DIR, 'static'),
-)
+    #Static assets config
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    STATIC_ROOT = 'staticfiles'
+    STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+    )
 
 
 #Login Settings when guest tries to view secure section
