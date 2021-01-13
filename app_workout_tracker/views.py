@@ -142,7 +142,9 @@ def delete_topic(request, topic_id):
     topic = Topic.objects.get(id=topic_id)
     if topic.owner == request.user:
         topic.delete()
-    return redirect('awt:secure_topics_list')
+        return redirect('awt:secure_topics_list')
+    else:
+        raise Http404
 
 
 @login_required
@@ -193,53 +195,50 @@ def edit_subtopic(request, subtopic_id, subtopic_name):
             subtopic = Goal.objects.get(id=subtopic_id)
             if subtopic.topic.owner == request.user:
                 subtopic_form = GoalForm(instance=subtopic)
-            else:
-                raise Http404
 
         elif subtopic_name == 'progress_list':
             subtopic = Progress.objects.get(id=subtopic_id)
             if subtopic.topic.owner == request.user:
                 subtopic_form = ProgressForm(instance=subtopic)
-            else:
-                raise Http404
 
         elif subtopic_name == 'mistakes_list':
             subtopic = Mistake.objects.get(id=subtopic_id)
             if subtopic.topic.owner == request.user:
                 subtopic_form = MistakeForm(instance=subtopic)
-            else:
-                raise Http404
     else:
         if subtopic_name == 'goals_list':
             subtopic = Goal.objects.get(id=subtopic_id)
             if subtopic.topic.owner == request.user:
                 subtopic_form = GoalForm(instance=subtopic, data=request.POST)
+
         elif subtopic_name == 'progress_list':
             subtopic = Progress.objects.get(id=subtopic_id)
             if subtopic.topic.owner == request.user:
                 subtopic_form = ProgressForm(instance=subtopic, data=request.POST)
-            else:
-                raise Http404
 
         elif subtopic_name == 'mistakes_list':
             subtopic = Mistake.objects.get(id=subtopic_id)
             if subtopic.topic.owner == request.user:
                 subtopic_form = MistakeForm(instance=subtopic, data=request.POST)
-            else:
-                raise Http404
-
-        if subtopic_form.is_valid():
-            subtopic_form.save()
+        try:
+            if subtopic_form.is_valid():
+                subtopic_form.save()
 
             return redirect('awt:secure_subtopic_detail', topic_id=subtopic.topic.id, subtopic_name=subtopic_name,subtopic_id=subtopic_id)
+        except UnboundLocalError:
+            #This will be raised cos subtopic_form will be unbound variable which is called before being reference, if the user is not authorised.
+            raise Http404
 
-    context = {'subtopic_form':subtopic_form, 'subtopic_name':subtopic_name, 'subtopic_id':subtopic_id}
-    return render(request, 'workout_tracker/edit_subtopic.html', context)
-
+    try:
+        context = {'subtopic_form':subtopic_form, 'subtopic_name':subtopic_name, 'subtopic_id':subtopic_id}
+        return render(request, 'workout_tracker/edit_subtopic.html', context)
+    except UnboundLocalError:
+        # This will be raised cos subtopic_form will be unbound variable which is called before being reference, if the user is not authorised.
+        raise Http404
 
 @login_required
 def delete_subtopic(request, subtopic_id, subtopic_name):
-    '''Deleting topic entry'''
+    '''Deleting subtopic entry'''
     if subtopic_name=='goals_list':
         subtopic = Goal.objects.get(id=subtopic_id)
     elif subtopic_name=='progress_list':
@@ -249,8 +248,9 @@ def delete_subtopic(request, subtopic_id, subtopic_name):
 
     if subtopic.topic.owner == request.user:
         subtopic.delete()
-
-    return redirect('awt:secure_subtopic_list', topic_name=subtopic.topic, topic_id=subtopic.topic.id, subtopic_name=subtopic_name)
+        return redirect('awt:secure_subtopic_list', topic_name=subtopic.topic, topic_id=subtopic.topic.id, subtopic_name=subtopic_name)
+    else:
+        raise Http404
 
 
 
