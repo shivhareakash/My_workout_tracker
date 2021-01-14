@@ -94,17 +94,22 @@ DATABASES = {
     }
 }
 
-# DB for Testing
-import sys
-if 'test' in sys.argv or 'test_coverage' in sys.argv: #Covers regular testing and django-coverage
-    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+# # DB for Testing
+# import sys
+# if 'test' in sys.argv or 'test_coverage' in sys.argv: #Covers regular testing and django-coverage
+#     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
 
-## DB for GIT HUB
+
+# Database definition for GITHUB
 if os.environ.get('GITHUB_WORKFLOW'):
-    DATABASES={
+    DATABASES = {
         'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'github_actions',
+            'USER': 'postgres',
+            'PASSWORD': 'postgres',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
         }
     }
 
@@ -155,7 +160,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 BOOTSTRAP5= {
     'include_jquery': True,
 }
-
 
 
 # Heroku settings
