@@ -94,7 +94,7 @@ DATABASES = {
     }
 }
 
-# # DB for Testing
+# # DB for Testing: It this is left uncommented...it will conflict with heroku db settings..Heroku doesnt run on sql.
 # import sys
 # if 'test' in sys.argv or 'test_coverage' in sys.argv: #Covers regular testing and django-coverage
 #     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
